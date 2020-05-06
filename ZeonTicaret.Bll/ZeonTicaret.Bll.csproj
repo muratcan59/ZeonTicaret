@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8F25F9AB-7C39-41B0-A43A-B77617F439CA}</ProjectGuid>
+    <ProjectGuid>{BE9C0729-9ABB-4802-85B9-844C9380C3AD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ZeonTicaret.Bll</RootNamespace>
@@ -31,7 +31,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,7 +54,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bBrand.cs" />
+    <Compile Include="bCargo.cs" />
+    <Compile Include="bCategory.cs" />
+    <Compile Include="bFeatureType.cs" />
+    <Compile Include="bFeatureValue.cs" />
+    <Compile Include="bOrderStatus.cs" />
+    <Compile Include="bPhoto.cs" />
+    <Compile Include="bProduct.cs" />
+    <Compile Include="bSales.cs" />
+    <Compile Include="bSalesDetail.cs" />
+    <Compile Include="bUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ZeonTicaret.Dal\ZeonTicaret.Dal.csproj">
+      <Project>{22C8E904-86FC-4243-B6A9-372066CEC8D5}</Project>
+      <Name>ZeonTicaret.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZeonTicaret.Model\ZeonTicaret.Model.csproj">
+      <Project>{983E87FE-9678-4DAF-BEF3-18F2B5E15E14}</Project>
+      <Name>ZeonTicaret.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeonTicaret.Bll", "ZeonTicaret.Bll\ZeonTicaret.Bll.csproj", "{8F25F9AB-7C39-41B0-A43A-B77617F439CA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeonTicaret.Dal", "ZeonTicaret.Dal\ZeonTicaret.Dal.csproj", "{22C8E904-86FC-4243-B6A9-372066CEC8D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeonTicaret.Model", "ZeonTicaret.Model\ZeonTicaret.Model.csproj", "{983E87FE-9678-4DAF-BEF3-18F2B5E15E14}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeonTicaret.Ui", "ZeonTicaret.Ui\ZeonTicaret.Ui.csproj", "{0A9ADA39-C5BB-4CC9-986E-F3790800F5CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeonTicaret.Bll", "ZeonTicaret.Bll\ZeonTicaret.Bll.csproj", "{BE9C0729-9ABB-4802-85B9-844C9380C3AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8F25F9AB-7C39-41B0-A43A-B77617F439CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F25F9AB-7C39-41B0-A43A-B77617F439CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F25F9AB-7C39-41B0-A43A-B77617F439CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F25F9AB-7C39-41B0-A43A-B77617F439CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{22C8E904-86FC-4243-B6A9-372066CEC8D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{22C8E904-86FC-4243-B6A9-372066CEC8D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22C8E904-86FC-4243-B6A9-372066CEC8D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{0A9ADA39-C5BB-4CC9-986E-F3790800F5CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A9ADA39-C5BB-4CC9-986E-F3790800F5CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A9ADA39-C5BB-4CC9-986E-F3790800F5CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE9C0729-9ABB-4802-85B9-844C9380C3AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE9C0729-9ABB-4802-85B9-844C9380C3AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE9C0729-9ABB-4802-85B9-844C9380C3AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE9C0729-9ABB-4802-85B9-844C9380C3AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
