@@ -3,19 +3,15 @@
 @{
     ViewBag.Title = "AddProductFeature";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ZeonTicaret.Ui.Models.ProductFeatureViewModel productFeatureView = new ZeonTicaret.Ui.Models.ProductFeatureViewModel();
     var urunler = ZeonTicaret.Bll.bProduct.GetAll();
-    var urun = ZeonTicaret.Bll.bProduct.GetById(Model.ProductId.Value);
-    var ozelliktipler = new List<ZeonTicaret.Model.FeatureType>();
-    if (urun.CategoryId != null)
-    {
-        ozelliktipler = ZeonTicaret.Bll.bFeatureType.GetFeatureByCategory(urun.CategoryId.Value);
-    }
+    var urun = new ZeonTicaret.Model.Product();
+    var ozelliktipler = ZeonTicaret.Bll.bFeatureType.GetAll();
     var ozellikdegerler = new List<ZeonTicaret.Model.FeatureValue>();
-    if (Model.FeatureTypeId != null)
+    if (productFeatureView.FeatureTypeId != null)
     {
-        ozellikdegerler = ZeonTicaret.Bll.bFeatureValue.GetFeatureValueByTypes(Model.FeatureTypeId.Value);
+        ozellikdegerler = ZeonTicaret.Bll.bFeatureValue.GetFeatureValueByTypes(productFeatureView.FeatureTypeId.Value);
     }
-    // javascript işlemleri eklenecek..
 }
 
 <link href="~/Areas/Admin/AdminTemp/assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
@@ -39,21 +35,21 @@
                                 <div class="form-group ">
                                     <label class="control-label col-lg-2">Ürün Adı</label>
                                     <div class="col-lg-10">
-                                        @Html.DropDownListFor(model => model.ProductId, new SelectList(urunler, "Id", "Name"), "Seçiniz", htmlAttributes: new { @class = "form-control m-bot15" })
+                                        @Html.DropDownListFor(model => model.ProductId, new SelectList(urunler, "Id", "Name"), "Seçiniz", htmlAttributes: new { @class = "form-control m-bot15 pr" })
                                     </div>
                                 </div>
 
                                 <div class="form-group ">
                                     <label class="control-label col-lg-2">Özellik Tipi</label>
                                     <div class="col-lg-10">
-                                        @Html.DropDownListFor(model => model.FeatureTypeId, new SelectList(ozelliktipler, "Id", "Name"), "Seçiniz", htmlAttributes: new { @class = "form-control m-bot15" })
+                                        @Html.DropDownListFor(model => model.FeatureTypeId, new SelectList(ozelliktipler, "Id", "Name"), "Seçiniz", htmlAttributes: new { @class = "form-control m-bot15 fType" })
                                     </div>
                                 </div>
 
                                 <div class="form-group ">
                                     <label class="control-label col-lg-2">Özellik Değeri</label>
                                     <div class="col-lg-10">
-                                        @Html.DropDownListFor(model => model.FeatureValueId, new SelectList(ozellikdegerler, "Id", "Name"), "Seçiniz", htmlAttributes: new { @class = "form-control m-bot15" })
+                                        @Html.DropDownListFor(model => model.FeatureValueId, new SelectList(ozellikdegerler, "Id", "Name"), "Seçiniz", htmlAttributes: new { @class = "form-control m-bot15 fValue" })
                                     </div>
                                 </div>
 

@@ -320,6 +320,13 @@
                         </a>
                     </li>
 
+                    <li>
+                        <a href="/Admin/Home/SliderPhotos">
+                            <i class="icon-dashboard"></i>
+                            <span>Slider Resimleri</span>
+                        </a>
+                    </li>
+
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="icon-laptop"></i>
@@ -328,15 +335,10 @@
                         <ul class="sub">
                             <li><a href="/Admin/Category/FeatureTypes">Özellik Tipleri</a></li>
                             <li><a href="/Admin/Category/FeatureValues">Özellik Değerleri</a></li>
+                            <li><a href="/Admin/Product/ProductFeatures">Ürün Özellikleri</a></li>
                         </ul>
                     </li>
 
-                    <li>
-                        <a href="/Admin/Home/SliderPhotos">
-                            <i class="icon-dashboard"></i>
-                            <span>Slider Resimleri</span>
-                        </a>
-                    </li>
 
                     <li class="sub-menu">
                         <a href="javascript:;">
@@ -397,11 +399,13 @@
     <script src="~/Areas/Admin/AdminTemp/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
     <script src="~/Areas/Admin/AdminTemp/js/owl.carousel.js"></script>
     <script src="~/Areas/Admin/AdminTemp/js/jquery.customSelect.min.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/AdminTemp/assets/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
     <script src="~/Areas/Admin/AdminTemp/js/respond.min.js"></script>
 
     <script type="text/javascript" src="~/Areas/Admin/AdminTemp/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="~/Areas/Admin/AdminTemp/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="~/Areas/Admin/AdminTemp/assets/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.tr.js" charset="utf-8"></script>
+    <script type="text/javascript" src="~/Areas/Admin/AdminTemp/assets/bootstrap-daterangepicker/date.js"></script>
     <script type="text/javascript" src="~/Areas/Admin/AdminTemp/assets/bootstrap-daterangepicker/moment.min.js"></script>
     <script type="text/javascript" src="~/Areas/Admin/AdminTemp/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script type="text/javascript" src="~/Areas/Admin/AdminTemp/assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
@@ -441,7 +445,38 @@
         });
 
     </script>
-    <!--this page  script only-->
-    <script src="~/Areas/Admin/AdminTemp/js/advanced-form-components.js"></script>
+    <script src="~/Areas/Admin/AdminTemp/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <!--script for this page-->
+    <script src="~/Areas/Admin/AdminTemp/js/form-component.js"></script>
+    <script>
+        $(".cat").change(function () {
+            setCountries();
+        });
+
+        function setCountries() {
+            var categoryId = $("#CategoryId").val();
+            $(".fType").html("");
+            $.get("/Admin/Product/GetFeatureTypes?categoryId=" + categoryId, function (result) {
+                $.each(result, function (key, value) {
+                    $(".fType").append(new Option(value.Name, value.Id));
+                });
+            });
+        }
+    </script>
+    <script>
+            $(".fType").change(function () {
+                setCountries();
+            });
+
+            function setCountries() {
+                var featureTypeId = $("#FeatureTypeId").val();
+                $(".fValue").html("");
+                $.get("/Admin/Product/GetFeatureValues?featureTypeId=" + featureTypeId, function (result) {
+                    $.each(result, function (key, value) {
+                        $(".fValue").append(new Option(value.Name, value.Id));
+                    });
+                });
+            }
+    </script>
 </body>
 </html>

@@ -49,8 +49,8 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            var kategori = ZeonTicaret.Bll.bCategory.GetById(item.Id);
-                            var marka = ZeonTicaret.Bll.bBrand.GetById(item.Id);
+                            var kategori = ZeonTicaret.Bll.bCategory.GetById(item.CategoryId.Value);
+                            var marka = ZeonTicaret.Bll.bBrand.GetById(item.BrandId.Value);
                             <tr class="">
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
@@ -62,7 +62,7 @@
                                     @Html.DisplayFor(modelItem => item.SellPrice)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.LastUseDate)
+                                    @item.LastUseDate.ToShortDateString()
                                 </td>
                                 <td>
                                     @if (kategori != null)

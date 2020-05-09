@@ -21,6 +21,7 @@ namespace ZeonTicaret.Bll
             return list;
         }
 
+
         public static List<FeatureType> GetFeatureByCategory(int katId)
         {
             var list = new List<FeatureType>();

@@ -126,5 +126,23 @@ namespace ZeonTicaret.Ui.Areas.Admin.Controllers
                 return Json(retVal, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public JsonResult DeleteProductFeature(int id)
+        {
+            bProductFeature.Delete(id);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetFeatureTypes(int categoryId)
+        {
+            var ozelliktipler = bFeatureType.GetFeatureByCategory(categoryId);
+            return Json(ozelliktipler, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetFeatureValues(int featureTypeId)
+        {
+            var ozellikdegerler = bFeatureValue.GetFeatureValueByTypes(featureTypeId);
+            return Json(ozellikdegerler, JsonRequestBehavior.AllowGet);
+        }
     }
 }
