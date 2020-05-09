@@ -3219,6 +3219,18 @@
     <Content Include="CKFinderScripts\lang\zh-cn.json" />
     <Content Include="CKFinderScripts\lang\zh-tw.json" />
     <Content Include="CKFinderScripts\plugins\README.md" />
+    <Content Include="Areas\Admin\Views\Category\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\FeatureTypes.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\AddFeatureType.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\UpdateFeatureType.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\FeatureValues.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\AddFeatureValue.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\UpdateFeatureValue.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\ProductFeatures.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\AddProductFeature.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\styles.js" />
     <Content Include="Scripts\ckeditor\vendor\promise.js" />
@@ -3274,8 +3286,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\AdminTemp\assets\jquery-file-upload\server\php\files\thumbnail\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Category\" />
     <Folder Include="Uploads\Brands\" />
+    <Folder Include="Uploads\Categories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

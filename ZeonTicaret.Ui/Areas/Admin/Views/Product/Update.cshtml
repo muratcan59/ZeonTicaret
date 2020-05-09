@@ -1,0 +1,137 @@
+﻿@model ZeonTicaret.Model.Product
+
+@{
+    ViewBag.Title = "Ürün Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var kategoriler = ZeonTicaret.Bll.bCategory.GetAll();
+    var markalar = ZeonTicaret.Bll.bBrand.GetAll();
+}
+
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script src="~/Scripts/ckeditor/config.js"></script>
+<script src="~/CKFinderScripts/ckfinder.js"></script>
+<link href="~/Areas/Admin/AdminTemp/assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+<script src="~/Areas/Admin/AdminTemp/assets/sweetalert2/sweetalert2.all.min.js"></script>
+<section class="wrapper">
+    <!-- page start-->
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Ürün Güncelle
+                </header>
+                <div class="panel-body">
+                    <div class="form">
+                        @using (Html.BeginForm("Update", "Product", FormMethod.Post, new { id = "UrunForm", @class = "cmxform form-horizontal tasi-form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.Id)
+                                @Html.HiddenFor(model => model.CreateDate)
+
+                                <div class="form-group ">
+                                    <label class="control-label col-lg-2">Adı</label>
+                                    <div class="col-lg-10">
+                                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label col-lg-2">Açıklama</label>
+                                    <div class="col-lg-10">
+                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label col-lg-2">Alış Fiyatı</label>
+                                    <div class="col-lg-10">
+                                        @Html.TextBoxFor(model => model.BuyPrice, new { @class = "spinner-input form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label col-lg-2">Satış Fiyatı</label>
+                                    <div class="col-lg-10">
+                                        @Html.TextBoxFor(model => model.SellPrice, new { @class = "spinner-input form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label col-lg-2">Kategori Adı</label>
+                                    <div class="col-lg-10">
+                                        @Html.DropDownListFor(model => model.CategoryId, new SelectList(kategoriler, "Id", "Name"), "Seçiniz", htmlAttributes: new { @class = "form-control m-bot15" })
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label col-lg-2">Marka Adı</label>
+                                    <div class="col-lg-10">
+                                        @Html.DropDownListFor(model => model.BrandId, new SelectList(markalar, "Id", "Name"), "Seçiniz", htmlAttributes: new { @class = "form-control m-bot15" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Son Kullanma Tarihi</label>
+                                    <div class="col-md-4">
+                                        <div data-date="2020-01-01T15:00:00Z" class="input-group date form_datetime-adv">
+                                            @Html.TextBoxFor(model => model.LastUseDate, new { @class = "form-control", @readonly = "readonly", @size = "16" })
+                                            @*<input type="text" class="form-control" name="LastUseDate" readonly="" size="16">*@
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-danger date-reset"><i class="icon-remove"></i></button>
+                                                <button type="button" class="btn btn-warning date-set"><i class="icon-calendar"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button class="btn btn-success" type="submit">Kaydet</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+<script>
+    var description = CKEDITOR.replace('Description');
+    CKFinder.setupCKEditor(description);
+</script>
+
+<script src="~/Areas/Admin/AdminTemp/js/jquery-1.8.3.min.js"></script>
+<script>
+    $('#UrunForm').on('submit', function (e) {
+        e.preventDefault();
+        var form = $('#UrunForm')[0];
+        var data = new FormData(form);
+        data.set('Description', CKEDITOR.instances['Description'].getData());
+        $.ajax({
+            url: '/Admin/Product/Update',
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (result) {
+                if (result.isSuccess) {
+                    Swal.fire(
+                        'Ürün Güncelleme',
+                        result.message,
+                        'success'
+                    )
+                    setTimeout(function () {
+                        window.location.href = "/Admin/Product/List";
+                    }, 2000);
+                }
+                else {
+                    Swal.fire(
+                        'Ürün Güncelleme',
+                        result.message,
+                        'danger'
+                    )
+                }
+            }
+        })
+    });
+</script>

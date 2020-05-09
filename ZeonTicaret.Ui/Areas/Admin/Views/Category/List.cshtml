@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ZeonTicaret.Model.Brand>
+﻿@model IEnumerable<ZeonTicaret.Model.Category>
 
 @{
-    ViewBag.Title = "Marka Listesi";
+    ViewBag.Title = "Kategori Listesi";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 <link href="~/Areas/Admin/AdminTemp/assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
@@ -12,14 +12,14 @@
     <!-- page start-->
     <section class="panel">
         <header class="panel-heading">
-            Marka Listesi
+            Kategori Listesi
         </header>
         <div class="panel-body">
             <div class="adv-table editable-table ">
                 <div class="clearfix">
                     <div class="btn-group">
-                        <a href="/Admin/Brand/Add" class="btn btn-success">
-                            Marka Ekle <i class="icon-plus"></i>
+                        <a href="/Admin/Category/Add" class="btn btn-success">
+                            Kategori Ekle <i class="icon-plus"></i>
                         </a>
                     </div>
                     <div class="btn-group pull-right">
@@ -38,9 +38,15 @@
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th>Adı</th>
-                            <th>Açıklama</th>
-                            <th>Resmi Göster</th>
+                            <th>
+                                Adı
+                            </th>
+                            <th>
+                                Açıklama
+                            </th>
+                            <th>
+                                Resmi Göster
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
@@ -48,7 +54,7 @@
                         @foreach (var item in Model)
                         {
                             var resim = ZeonTicaret.Bll.bPhoto.GetById(item.PhotoId.Value);
-                            <tr class="">
+                            <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
@@ -62,7 +68,7 @@
                                     }
                                 </td>
                                 <td>
-                                    <a href="/Admin/Brand/Update/@item.Id"><i class="icon-pencil"></i></a>
+                                    <a href="/Admin/Category/Update/@item.Id"><i class="icon-pencil"></i></a>
                                     <a href="#" data-id="@item.Id" class="btnSil"><i class="icon-trash"></i></a>
                                 </td>
                             </tr>
@@ -96,7 +102,7 @@
         }).then((result) => {
             if (result.value) {
                 $.ajax({
-                    url: '/Admin/Brand/Delete/' + id,
+                    url: '/Admin/Category/Delete/' + id,
                     type: 'GET',
                     enctype: 'multipart/form-data',
                     data: { id: id },

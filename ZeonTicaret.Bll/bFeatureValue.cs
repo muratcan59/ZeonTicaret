@@ -21,6 +21,16 @@ namespace ZeonTicaret.Bll
             return list;
         }
 
+        public static List<FeatureValue> GetFeatureValueByTypes(int fTypeId)
+        {
+            var list = new List<FeatureValue>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                list = db.FeatureValues.Where(x => x.IsDelete == false && x.FeatureTypeId == fTypeId).ToList();
+            }
+            return list;
+        }
+
         public static FeatureValue GetById(int id)
         {
             var data = new FeatureValue();

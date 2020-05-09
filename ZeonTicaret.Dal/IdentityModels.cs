@@ -26,6 +26,7 @@ namespace ZeonTicaret.Dal
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Sales> Sales { get; set; }
         public virtual DbSet<SalesDetail> SalesDetails { get; set; }
+        public virtual DbSet<ProductFeature> ProductFeatures { get; set; }
 
         public static ApplicationDbContext Create()
         {

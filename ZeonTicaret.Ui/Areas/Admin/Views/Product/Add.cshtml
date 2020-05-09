@@ -26,7 +26,6 @@
                         @using (Html.BeginForm("Add", "Product", FormMethod.Post, new { id = "UrunForm", @class = "cmxform form-horizontal tasi-form" }))
                         {
                             @Html.AntiForgeryToken()
-                            @*<form class="cmxform form-horizontal tasi-form" id="UrunForm" method="get" action="">*@
                             <div class="form-group ">
                                 <label class="control-label col-lg-2">Adı</label>
                                 <div class="col-lg-10">
@@ -78,10 +77,8 @@
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
                                     <button class="btn btn-primary" type="submit">Ekle</button>
-                                    @*<button class="btn btn-default" type="button">Cancel</button>*@
                                 </div>
                             </div>
-                            @*</form>*@
                         }
                     </div>
                 </div>

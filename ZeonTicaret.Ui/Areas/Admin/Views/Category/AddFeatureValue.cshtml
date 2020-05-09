@@ -1,8 +1,9 @@
-﻿@model ZeonTicaret.Model.Brand
+﻿@model ZeonTicaret.Model.FeatureValue
 
 @{
-    ViewBag.Title = "Marka Güncelle";
+    ViewBag.Title = "Özellik Değer Ekle";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var ozelliktipler = ZeonTicaret.Bll.bFeatureType.GetAll();
 }
 
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
@@ -16,44 +17,40 @@
         <div class="col-lg-12">
             <section class="panel">
                 <header class="panel-heading">
-                    Marka Güncelle
+                    Özellik Değer Ekle
                 </header>
                 <div class="panel-body">
                     <div class="form">
-                        @using (Html.BeginForm("Update", "Brand", FormMethod.Post, new { id = "MarkaForm", @class = "cmxform form-horizontal tasi-form" }))
+                        @using (Html.BeginForm("AddFeatureValue", "Category", FormMethod.Post, new { id = "OzellikDegerForm", @class = "cmxform form-horizontal tasi-form" }))
                         {
                             @Html.AntiForgeryToken()
-                            @Html.HiddenFor(x => x.Id)
-                            @Html.HiddenFor(x => x.CreateDate)
+
                             <div class="form-horizontal">
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="form-group ">
                                     <label class="control-label col-lg-2">Adı</label>
                                     <div class="col-lg-10">
-                                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                        <input class="form-control" id="Name" name="Name" type="text" />
                                     </div>
                                 </div>
+
                                 <div class="form-group ">
                                     <label class="control-label col-lg-2">Açıklama</label>
                                     <div class="col-lg-10">
                                         @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Resim Ekle</label>
-                                    <div class="controls col-md-9">
-                                        <div class="fileupload fileupload-new" data-provides="fileupload">
-                                            <span class="btn btn-white btn-file">
-                                                <span class="fileupload-new"><i class="icon-paper-clip"></i>Resim Seç</span>
-                                                <input type="file" name="foto" class="default" />
-                                            </span>
-                                        </div>
+
+                                <div class="form-group ">
+                                    <label class="control-label col-lg-2">Özellik Tip Adı</label>
+                                    <div class="col-lg-10">
+                                        @Html.DropDownListFor(model => model.FeatureTypeId, new SelectList(ozelliktipler, "Id", "Name"), "Seçiniz", htmlAttributes: new { @class = "form-control m-bot15" })
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-lg-offset-2 col-lg-10">
-                                        <button class="btn btn-success" type="submit">Kaydet</button>
+                                        <button class="btn btn-primary" type="submit">Ekle</button>
                                     </div>
                                 </div>
                             </div>
@@ -70,13 +67,13 @@
 </script>
 <script src="~/Areas/Admin/AdminTemp/js/jquery-1.8.3.min.js"></script>
 <script>
-    $('#MarkaForm').on('submit', function (e) {
+    $('#OzellikDegerForm').on('submit', function (e) {
         e.preventDefault();
-        var form = $('#MarkaForm')[0];
+        var form = $('#OzellikDegerForm')[0];
         var data = new FormData(form);
         data.set('Description', CKEDITOR.instances['Description'].getData());
         $.ajax({
-            url: '/Admin/Brand/Update',
+            url: '/Admin/Category/AddFeatureValue',
             type: 'POST',
             enctype: 'multipart/form-data',
             data: data,
@@ -87,17 +84,17 @@
             success: function (result) {
                 if (result.isSuccess) {
                     Swal.fire(
-                        'Marka Güncelleme',
+                        'Özellik Değer Ekleme',
                         result.message,
                         'success'
                     )
                     setTimeout(function () {
-                        window.location.href = "/Admin/Brand/List";
+                        window.location.href = "/Admin/Category/FeatureValues";
                     }, 2000);
                 }
                 else {
                     Swal.fire(
-                        'Marka Güncelleme',
+                        'Özellik Değer Ekleme',
                         result.message,
                         'danger'
                     )

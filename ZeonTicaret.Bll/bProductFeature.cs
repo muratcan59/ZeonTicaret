@@ -9,51 +9,41 @@ using ZeonTicaret.Model;
 
 namespace ZeonTicaret.Bll
 {
-    public static class bFeatureType
+    public static class bProductFeature
     {
-        public static List<FeatureType> GetAll()
+        public static List<ProductFeature> GetAll()
         {
-            var list = new List<FeatureType>();
+            var list = new List<ProductFeature>();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                list = db.FeatureTypes.Where(x => x.IsDelete == false).ToList();
+                list = db.ProductFeatures.Where(x => x.IsDelete == false).ToList();
             }
             return list;
         }
 
-        public static List<FeatureType> GetFeatureByCategory(int katId)
+        public static ProductFeature GetById(int id)
         {
-            var list = new List<FeatureType>();
+            var data = new ProductFeature();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                list = db.FeatureTypes.Where(x => x.IsDelete == false && x.CategoryId == katId).ToList();
-            }
-            return list;
-        }
-
-        public static FeatureType GetById(int id)
-        {
-            var data = new FeatureType();
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                data = db.FeatureTypes.FirstOrDefault(x => x.Id == id);
+                data = db.ProductFeatures.FirstOrDefault(x => x.Id == id);
             }
             return data;
         }
 
-        public static FeatureType Add(FeatureType model)
+        public static ProductFeature Add(ProductFeature model)
         {
             model.CreateDate = DateTime.Now;
             model.IsDelete = false;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                db.FeatureTypes.Add(model);
+                db.ProductFeatures.Add(model);
                 db.SaveChanges();
             }
             return model;
         }
 
-        public static FeatureType Update(FeatureType model)
+        public static ProductFeature Update(ProductFeature model)
         {
             model.UpdateDate = DateTime.Now;
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -68,7 +58,7 @@ namespace ZeonTicaret.Bll
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var data = db.FeatureTypes.Find(id);
+                var data = db.ProductFeatures.Find(id);
                 data.IsDelete = true;
                 data.DeleteDate = DateTime.Now;
                 db.SaveChanges();

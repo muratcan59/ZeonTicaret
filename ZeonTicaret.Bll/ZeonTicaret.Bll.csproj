@@ -62,6 +62,7 @@
     <Compile Include="bOrderStatus.cs" />
     <Compile Include="bPhoto.cs" />
     <Compile Include="bProduct.cs" />
+    <Compile Include="bProductFeature.cs" />
     <Compile Include="bSales.cs" />
     <Compile Include="bSalesDetail.cs" />
     <Compile Include="bUser.cs" />

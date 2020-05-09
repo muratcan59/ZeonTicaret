@@ -15,7 +15,7 @@ namespace ZeonTicaret.Model
         public double BuyPrice { get; set; }
         public double SellPrice { get; set; }
         public DateTime LastUseDate { get; set; }
-        public int CategoryId { get; set; }
-        public int BrandId { get; set; }
+        public int? CategoryId { get; set; }
+        public int? BrandId { get; set; }
     }
 }
