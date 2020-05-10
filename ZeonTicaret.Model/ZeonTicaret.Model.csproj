@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base.cs" />
+    <Compile Include="Basket.cs" />
     <Compile Include="Brand.cs" />
     <Compile Include="Cargo.cs" />
     <Compile Include="Category.cs" />

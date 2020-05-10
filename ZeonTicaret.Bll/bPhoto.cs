@@ -21,6 +21,26 @@ namespace ZeonTicaret.Bll
             return list;
         }
 
+        public static List<Photo> GetAllSliders()
+        {
+            var list = new List<Photo>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                list = db.Photos.Where(x => x.IsDelete == false && x.Path.Contains("Slider")).ToList();
+            }
+            return list;
+        }
+
+        public static List<Photo> GetAllProducts()
+        {
+            var list = new List<Photo>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                list = db.Photos.Where(x => x.IsDelete == false && x.Path.Contains("Product")).ToList();
+            }
+            return list;
+        }
+
         public static Photo GetById(int id)
         {
             var data = new Photo();

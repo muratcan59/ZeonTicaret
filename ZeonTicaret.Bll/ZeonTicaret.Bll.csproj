@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bBasket.cs" />
     <Compile Include="bBrand.cs" />
     <Compile Include="bCargo.cs" />
     <Compile Include="bCategory.cs" />

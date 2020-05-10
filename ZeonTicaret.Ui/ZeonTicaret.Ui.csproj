@@ -3232,6 +3232,10 @@
     <Content Include="Areas\Admin\Views\Product\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Product\ProductFeatures.cshtml" />
     <Content Include="Areas\Admin\Views\Product\AddProductFeature.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\AddProductPhoto.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Sliders.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\AddSlider.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\UpdateSlider.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\styles.js" />
     <Content Include="Scripts\ckeditor\vendor\promise.js" />
@@ -3282,13 +3286,19 @@
     <Content Include="Zeon\css\fonts\icomoon.eot" />
     <Content Include="Zeon\css\fonts\icomoon.ttf" />
     <Content Include="Zeon\css\fonts\icomoon.woff" />
+    <Content Include="Views\Home\Basket.cshtml" />
+    <Content Include="Views\Home\Sliders.cshtml" />
+    <Content Include="Views\Home\NewProducts.cshtml" />
+    <Content Include="Views\Home\Services.cshtml" />
+    <Content Include="Views\Home\Brands.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\AdminTemp\assets\jquery-file-upload\server\php\files\thumbnail\" />
-    <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Uploads\Brands\" />
     <Folder Include="Uploads\Categories\" />
+    <Folder Include="Uploads\Products\" />
+    <Folder Include="Uploads\Sliders\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,6 +16,43 @@ namespace ZeonTicaret.Ui.Areas.Admin.Controllers
         {
             var list = bProduct.GetAll();
             return View(list);
+        }
+
+        public ActionResult AddProductPhoto(int id)
+        {
+            var data = bProduct.GetById(id);
+            return View(data);
+        }
+
+        [HttpPost]
+        public JsonResult AddProductPhoto(Photo model, HttpPostedFileBase foto)
+        {
+            ReturnValue retVal = new ReturnValue();
+            try
+            {
+                if (foto != null && foto.ContentLength > 0)
+                {
+                    string dir = Server.MapPath("~/Uploads/Products/");
+                    if (!Directory.Exists(dir))
+                    {
+                        Directory.CreateDirectory(dir);
+                    }
+                    var path = Path.Combine(dir, foto.FileName);
+                    foto.SaveAs(path);
+                    model.Path = "/Uploads/Products/" + foto.FileName;
+                    
+                    bPhoto.Add(model);
+                }
+                retVal.isSuccess = true;
+                retVal.message = "Ekleme başarılı.";
+                return Json(retVal, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                retVal.isSuccess = false;
+                retVal.message = ex.Message;
+                return Json(retVal, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Add()

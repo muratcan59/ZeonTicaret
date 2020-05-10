@@ -15,7 +15,7 @@ namespace ZeonTicaret.Dal
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
         }
-
+        public virtual DbSet<Basket> Baskets { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Cargo> Cargos { get; set; }

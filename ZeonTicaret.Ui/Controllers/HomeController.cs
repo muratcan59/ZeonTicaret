@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ZeonTicaret.Bll;
 
 namespace ZeonTicaret.Ui.Controllers
 {
@@ -11,6 +12,34 @@ namespace ZeonTicaret.Ui.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public PartialViewResult Basket()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult Sliders()
+        {
+            var list = bPhoto.GetAllSliders();
+            return PartialView(list);
+        }
+
+        public PartialViewResult NewProducts()
+        {
+            var list = bPhoto.GetAllProducts();
+            return PartialView(list);
+        }
+
+        public PartialViewResult Services()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult Brands()
+        {
+            var list = bBrand.GetAll();
+            return PartialView(list);
         }
 
         public ActionResult About()

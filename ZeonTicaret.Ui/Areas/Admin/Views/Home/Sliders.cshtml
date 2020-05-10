@@ -1,23 +1,24 @@
-﻿@model IEnumerable<ZeonTicaret.Model.Product>
+﻿@model IEnumerable<ZeonTicaret.Model.Photo>
 
 @{
-    ViewBag.Title = "Ürün Listesi";
+    ViewBag.Title = "Slider Listesi";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+
 <link href="~/Areas/Admin/AdminTemp/assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
 <script src="~/Areas/Admin/AdminTemp/assets/sweetalert2/sweetalert2.all.min.js"></script>
 <section class="wrapper">
     <!-- page start-->
     <section class="panel">
         <header class="panel-heading">
-            Ürün Listesi
+            Slider Listesi
         </header>
         <div class="panel-body">
             <div class="adv-table editable-table ">
                 <div class="clearfix">
                     <div class="btn-group">
-                        <a href="/Admin/Product/Add" class="btn btn-success">
-                            Yeni Ürün <i class="icon-plus"></i>
+                        <a href="/Admin/Home/AddSlider" class="btn btn-success">
+                            Slider Ekle <i class="icon-plus"></i>
                         </a>
                     </div>
                     <div class="btn-group pull-right">
@@ -36,51 +37,27 @@
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th>Adı</th>
-                            <th>Alış Fiyatı</th>
-                            <th>Satış Fiyatı</th>
-                            <th>Son Kullanma Tarihi</th>
-                            <th>Kategori Adı</th>
-                            <th>Marka Adı</th>
-                            <th>Ürün Resim Ekle</th>
+                            <th>
+                                Resim
+                            </th>
+                            <th>
+                                Sıra No
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            var kategori = ZeonTicaret.Bll.bCategory.GetById(item.CategoryId.Value);
-                            var marka = ZeonTicaret.Bll.bBrand.GetById(item.BrandId.Value);
-                            <tr class="">
+                            <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
+                                    <img src="@item.Path" width="100" height="100"/>
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.BuyPrice) TL
+                                    @Html.DisplayFor(modelItem => item.OrderNo)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.SellPrice) TL
-                                </td>
-                                <td>
-                                    @item.LastUseDate.ToShortDateString()
-                                </td>
-                                <td>
-                                    @if (kategori != null)
-                                    {
-                                        @Html.DisplayFor(modelItem => kategori.Name)
-                                    }
-                                </td>
-                                <td>
-                                    @if (marka != null)
-                                    {
-                                        @Html.DisplayFor(modelItem => marka.Name)
-                                    }
-                                </td>
-                                <td>
-                                    <a href="/Admin/Product/AddProductPhoto/@item.Id"><i class="icon-plus"></i></a>
-                                </td>
-                                <td>
-                                    <a href="/Admin/Product/Update/@item.Id"><i class="icon-pencil"></i></a>
+                                    <a href="/Admin/Home/UpdateSlider/@item.Id"><i class="icon-pencil"></i></a>
                                     <a href="#" data-id="@item.Id" class="btnSil"><i class="icon-trash"></i></a>
                                 </td>
                             </tr>
@@ -107,7 +84,7 @@
         }).then((result) => {
             if (result.value) {
                 $.ajax({
-                    url: '/Admin/Product/Delete/' + id,
+                    url: '/Admin/Home/DeleteSlider/' + id,
                     type: 'GET',
                     enctype: 'multipart/form-data',
                     data: { id: id },
@@ -128,7 +105,6 @@
                         }
                     }
                 });
-
             }
         })
     });
